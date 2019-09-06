@@ -1,4 +1,7 @@
 VAGRANT_COMMAND = ARGV[0]
+milestone = "cbc"
+update_version = "232"
+build_number = "b04"
 
 Vagrant.configure("2") do |config|
   if VAGRANT_COMMAND == "ssh"
@@ -6,7 +9,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "build1" do |build1|
-    build1.vm.provision "shell", path: "./common/build-setup.sh"
+    build1.vm.provision "shell", path: "./common/build-setup.sh", args: "#{milestone} #{update_version} #{build_number}"
     build1.vm.synced_folder "./common/", "/common"
     build1.vm.box = "centos/7"
  
