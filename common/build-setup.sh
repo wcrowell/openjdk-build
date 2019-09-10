@@ -46,25 +46,31 @@ echo Call configure with boot JDK location
 echo Calling configure 
 bash configure --with-boot-jdk=/usr/lib/jvm/java-1.8.0 --with-milestone=$milestone --with-update-version=$update_version --with-build-number=$build_number
 
-echo Making all and profiles
-make all
-make profiles
+echo Making all... 
+make images 
 
 echo Compressing compact1
+rm -rf /common/jre-8u$update_version-$build_number-compact1-linux-x64.tar.gz
 cd /common/jdk8u/build/linux-x86_64-normal-server-release/images/j2re-compact1-image
-tar zcvf /common/jre-8u$update_version-$build_number-compact1-linux-x64.tar.gz * 
+rm -rf jre-8u*-compact1-linux-x64.tar.gz
+tar zcvf /common/jre-8u$update_version-$build_number-compact1-linux-x64.tar.gz *
 
 echo Compressing compact2
+rm -rf /common/jre-8u$update_version-$build_number-compact2-linux-x64.tar.gz
 cd /common/jdk8u/build/linux-x86_64-normal-server-release/images/j2re-compact2-image
-tar zcvf /common/jre-8u$update_version-$build_number-compact2-linux-x64.tar.gz * 
+rm -rf jre-8u*-compact2-linux-x64.tar.gz
+tar zcvf /common/jre-8u$update_version-$build_number-compact2-linux-x64.tar.gz *
 
 echo Compressing compact3
+rm -rf /common/jre-8u$update_version-$build_number-compact3-linux-x64.tar.gz
 cd /common/jdk8u/build/linux-x86_64-normal-server-release/images/j2re-compact3-image
-tar zcvf /common/jre-8u$update_version-$build_number-compact3-linux-x64.tar.gz * 
+rm -rf jre-8u*-compact3-linux-x64.tar.gz
+tar zcvf /common/jre-8u$update_version-$build_number-compact3-linux-x64.tar.gz *
 
-echo Compressing full 
+echo Compressing full
+rm -rf /common/jre-8u$update_version-$build_number-full-linux-x64.tar.gz
 cd /common/jdk8u/build/linux-x86_64-normal-server-release/images/j2re-image
+rm -rf jre-8u*-full-linux-x64.tar.gz
 tar zcvf /common/jre-8u$update_version-$build_number-full-linux-x64.tar.gz *
 
-echo Finished building OpenJDK.  Images will be in /common 
-
+echo Finished building OpenJDK.  Images will be in /common
